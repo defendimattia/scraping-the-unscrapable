@@ -38,9 +38,18 @@ def parse_card_data(card):
             By.XPATH, ".//span[contains(text(), 'Data di inizio')]"
         ).text
         if "·" in date_info_text:
-            start_date, active_time = [x.strip() for x in date_info_text.split("·")]
+            start_date_text, active_time = [
+                x.strip() for x in date_info_text.split("·")
+            ]
         else:
-            start_date, active_time = date_info_text, None
+            start_date_text, active_time = date_info_text, None
+
+        # Estrarre solo la data dopo i due punti
+        if ":" in start_date_text:
+            start_date = start_date_text.split(": ")[1].strip()
+        else:
+            start_date = start_date_text.strip()
+
     except:
         start_date, active_time = None, None
 
