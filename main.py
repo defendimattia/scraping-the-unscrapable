@@ -16,6 +16,24 @@ def main():
         cards = extract_cards(container)
         print("Numero di cards:", len(cards))
 
+        cards_elements = extract_cards(container)
+        cards_data = [parse_card_data(card) for card in cards_elements]
+
+        # Stampa test nel terminale
+        print(
+            f"""
+
+            library_id: {cards_data[0]["library_id"]}
+            start_date: {cards_data[0]["start_date"]}
+            active_time: {cards_data[0]["active_time"]}
+            platform: {cards_data[0]["platforms"]}
+            description: {cards_data[0]["description"]}
+            brand: {cards_data[0]["brand"]}
+            product_name: {cards_data[0]["product_name"]}\n
+
+            """
+        )
+
     finally:
         driver.quit()
 
