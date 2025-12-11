@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+import re
 
 platform_map = {
     "-2234px": "Facebook",
@@ -37,18 +38,14 @@ def parse_card_data(card):
         date_info_text = card.find_element(
             By.XPATH, ".//span[contains(text(), 'Data di inizio')]"
         ).text
-        if "·" in date_info_text:
-            start_date_text, active_time = [
-                x.strip() for x in date_info_text.split("·")
-            ]
-        else:
-            start_date_text, active_time = date_info_text, None
 
-        # Estrarre solo la data dopo i due punti
-        if ":" in start_date_text:
-            start_date = start_date_text.split(": ")[1].strip()
-        else:
-            start_date = start_date_text.strip()
+        # Estrarre solo la data (tutto dopo i due punti fino al punto centrale o fine stringa)
+        date_match = re.search(r"Data di inizio.*?:\s*([^\u00b7]+)", date_info_text)
+        start_date = date_match.group(1).strip() if date_match else None
+
+        # Estrarre solo le ore di attività (numero intero prima di 'h')
+        hours_match = re.search(r"(\d+)\s*h", date_info_text)
+        active_time = hours_match.group(1) if hours_match else None
 
     except:
         start_date, active_time = None, None
