@@ -60,7 +60,9 @@ def parse_card_data(card):
 
     # Descrizione
     try:
-        description = card.find_element(By.XPATH, ".//div[@role='button']//span").text
+        description = card.find_element(
+            By.XPATH, "//div[contains(@style, 'white-space: pre-wrap')]/span"
+        ).text
     except:
         description = None
 
