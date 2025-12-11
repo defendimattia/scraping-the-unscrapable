@@ -8,17 +8,20 @@ from config.settings import TIMEOUT, SCROLL_TIMEOUT
 
 
 def load_page(driver, url):
-    """Carica la pagina, attende e prende il contenitore principale."""
+    """Carica la pagina e attende che il container principale sia presente."""
     driver.get(url)
     human_sleep()
     human_mouse_move(driver)
 
-    container = WebDriverWait(driver, TIMEOUT).until(
+    # Aspetta che il container esista nel DOM (ma non lo restituisce)
+    WebDriverWait(driver, TIMEOUT).until(
         EC.presence_of_element_located(
-            (By.XPATH, "//div[contains(@class, 'x1dr75xp')]")
+            (
+                By.XPATH,
+                "//div[@class='x1dr75xp xh8yej3 xkopdvs']",
+            )
         )
     )
-    return container
 
 
 def infinite_scroll(driver):
@@ -38,3 +41,11 @@ def infinite_scroll(driver):
             break
 
         last_height = new_height
+
+
+def get_container(driver):
+    """Recupera il container aggiornato dopo lo scroll."""
+    container = driver.find_element(
+        By.XPATH, "//div[@class='x1dr75xp xh8yej3 xkopdvs']"
+    )
+    return container

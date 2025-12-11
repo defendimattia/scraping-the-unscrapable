@@ -6,9 +6,7 @@ def extract_cards(container):
     Riceve il container (raw Selenium element) e restituisce una lista
     di elementi/strutture con i dati.
     """
-    cards = container.find_elements(
-        By.XPATH, ".//div[contains(@class, 'x78zum5') and contains(@class, 'xdt5ytf')]"
-    )
+    cards = container.find_elements(By.XPATH, ".//div[@class='xh8yej3']")
     return cards
 
 
