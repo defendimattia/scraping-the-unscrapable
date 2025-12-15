@@ -96,6 +96,15 @@ def parse_card_data(card):
     except:
         img = None
 
+    # Link
+    try:
+        link = card.find_element(
+            By.XPATH,
+            ".//a[@class='x1hl2dhg x1lku1pv x8t9es0 x1fvot60 xxio538 xjnfcd9 xq9mrsl x1yc453h x1h4wwuj x1fcty0u x1lliihq']",
+        ).get_attribute("href")
+    except:
+        link = None
+
     # Dizionario finale
     return {
         "library_id": library_id,
@@ -106,4 +115,5 @@ def parse_card_data(card):
         "brand": brand,
         "product_name": product_name,
         "img": img,
+        "link": link,
     }

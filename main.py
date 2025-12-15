@@ -32,6 +32,7 @@ def main():
                 brand: {card["brand"]}
                 product_name: {card["product_name"]}
                 img: {card["img"]}
+                link: {card["link"]}
 
                 """
             )
