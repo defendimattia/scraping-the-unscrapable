@@ -13,8 +13,6 @@ def main():
 
         container = get_container(driver)
 
-        cards = extract_cards(container)
-
         cards_elements = extract_cards(container)
         cards_data = [parse_card_data(card) for card in cards_elements]
 
