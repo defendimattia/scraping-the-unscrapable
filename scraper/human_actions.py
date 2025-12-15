@@ -20,4 +20,5 @@ def human_scroll(driver):
     """Scroll casuale verticale."""
     step = random.randint(200, 500)
     driver.execute_script(f"window.scrollBy(0, {step});")
+    human_mouse_move(driver)
     time.sleep(random.uniform(0.5, 1.2))
