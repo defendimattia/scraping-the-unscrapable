@@ -7,6 +7,11 @@ platform_map = {
     "-880px": "Audience Network",
     "-270px": "Messenger",
     "-744px": "Threads",
+    "-75px -309px": "Instagram",
+    "-75px -668px": "Facebook",
+    "-75px -296px": "Audience Network",
+    "-32px -1333px": "Messenger",
+    "-58px -1333px": "Threads",
 }
 
 
