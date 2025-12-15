@@ -50,7 +50,7 @@ def parse_card_data(card):
     except:
         start_date, active_time = None, None
 
-    # Piattaforme tramite XPath usando gli ID
+    # Piattaforme
     platforms = []
     try:
         icon_divs = card.find_elements(
@@ -67,7 +67,7 @@ def parse_card_data(card):
     # Descrizione
     try:
         description = card.find_element(
-            By.XPATH, "//div[contains(@style, 'white-space: pre-wrap')]/span"
+            By.XPATH, ".//div[contains(@style, 'white-space: pre-wrap')]/span"
         ).text
     except:
         description = None
@@ -87,6 +87,15 @@ def parse_card_data(card):
     except:
         product_name = None
 
+    # Immagine
+    try:
+        img = card.find_element(
+            By.XPATH,
+            ".//a[contains(@href,'doubleclick') or contains(@href,'facebook.com')]//img[contains(@src,'fbcdn.net')]",
+        ).get_attribute("src")
+    except:
+        img = None
+
     # Dizionario finale
     return {
         "library_id": library_id,
@@ -96,4 +105,5 @@ def parse_card_data(card):
         "description": description,
         "brand": brand,
         "product_name": product_name,
+        "img": img,
     }

@@ -33,6 +33,7 @@ def infinite_scroll(driver):
         for _ in range(8):
             human_scroll(driver)
 
+        human_sleep()
         human_mouse_move(driver)
 
         new_height = driver.execute_script("return document.body.scrollHeight")
