@@ -105,7 +105,7 @@ def parse_card_data(card):
     try:
         link = card.find_element(
             By.XPATH,
-            ".//a[@class='x1hl2dhg x1lku1pv x8t9es0 x1fvot60 xxio538 xjnfcd9 xq9mrsl x1yc453h x1h4wwuj x1fcty0u x1lliihq']",
+            ".//a[@target='_blank' and (contains(@href,'l.facebook.com/l.php') or contains(@href,'doubleclick'))]",
         ).get_attribute("href")
     except:
         link = None

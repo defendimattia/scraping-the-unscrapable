@@ -35,7 +35,7 @@ def main():
                 """
             )
 
-        print("Numero di cards:", int(len(cards) / 2))
+        print("Numero di cards:", int(len(cards_data) / 2))
 
     finally:
         driver.quit()
