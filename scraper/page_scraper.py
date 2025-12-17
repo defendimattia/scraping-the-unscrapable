@@ -18,7 +18,7 @@ def load_page(driver, url):
         EC.presence_of_element_located(
             (
                 By.XPATH,
-                "//div[@class='x1dr75xp xh8yej3 xkopdvs']",
+                "//div[@class='xl56j7k x1dr75xp xh8yej3 xkopdvs']",
             )
         )
     )
@@ -47,6 +47,6 @@ def infinite_scroll(driver):
 def get_container(driver):
     """Recupera il container aggiornato dopo lo scroll."""
     container = driver.find_element(
-        By.XPATH, "//div[@class='x1dr75xp xh8yej3 xkopdvs']"
+        By.XPATH, "//div[@class='xl56j7k x1dr75xp xh8yej3 xkopdvs']"
     )
     return container
