@@ -53,7 +53,6 @@ def save_to_csv(
     data: Iterable[Dict[str, Any]],
     output_path: str | Path,
     columns: List[str] = DEFAULT_COLUMNS,
-    overwrite: bool = True,
     encoding: str = "utf-8",
 ) -> None:
     """
@@ -62,13 +61,10 @@ def save_to_csv(
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    mode = "w" if overwrite else "a"
-
-    with output_path.open(mode, newline="", encoding=encoding) as f:
+    with output_path.open("w", newline="", encoding=encoding) as f:
         writer = csv.DictWriter(f, fieldnames=columns, delimiter=";")
 
-        if overwrite:
-            writer.writeheader()
+        writer.writeheader()
 
         for card in data:
             writer.writerow(prepare_row(card, columns))
